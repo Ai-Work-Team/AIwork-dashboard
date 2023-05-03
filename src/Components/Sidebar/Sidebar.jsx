@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-
+import { useLocation } from 'react-router-dom';
 //Icon
 import chart from "../../assets/iconSidebar/chart.svg";
 import order from "../../assets/iconSidebar/addOrder.svg";
@@ -22,6 +22,11 @@ import { nanoid } from "@reduxjs/toolkit";
 // ];
 const Sidebar = () => {
   const { mode } = useSelector((state) => state.timeMode);
+  const arr = ['/login', '/phoneSms', '/editUser', '/success']
+
+  if (arr.includes(location.pathname)) {
+    return null; 
+  }
 
   return (
     <div

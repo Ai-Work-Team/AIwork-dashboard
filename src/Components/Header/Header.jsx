@@ -5,14 +5,17 @@ import { Avatar } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import MaterialUISwitch from "./Components/DarkMode";
 import { timeMode } from "../../store/timeMode";
+import { useLocation } from 'react-router-dom';
+
 
 
 const Header = () => {
-  // const [change, setChange] = React.useState(true);
+  const arr = ['/login', '/phoneSms', '/editUser', '/success']
+  if (arr.includes(location.pathname)) {
+    return null; 
+  }
   const dispatch = useDispatch()
-  // React.useEffect(() => {
-  //   dispatch(timeMode())
-  // }, [change]);
+
   const {mode} = useSelector((state) => state.timeMode)
   // console.log(mode);
   

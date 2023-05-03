@@ -151,27 +151,11 @@ const Priceitem = ({ data, loading }) => {
                                 }}
                                 align="center"
                               >
-                                {resItem.productsWithPrices[key]}
+                                {resItem.productsWithPrices[key]} so'm
                               </TableCell>
                             );
                           }
                         )}
-                        {/* {productsWithPrices.map((item) => {
-                          return item.map((subArr) => {
-                            return (
-                              <TableCell
-                                sx={{
-                                  color: mode ? "#505050" : "white",
-                                  fontWeight: "700",
-                                  fontSize: "18px",
-                                }}
-                                align="center"
-                              >
-                                {subArr[1]}
-                              </TableCell>
-                            );
-                          });
-                        })} */}
                       </TableRow>
                     );
                   })}
@@ -185,4 +169,3 @@ const Priceitem = ({ data, loading }) => {
 };
 
 export default Priceitem;
-//kodda qanaqa xatolik bor

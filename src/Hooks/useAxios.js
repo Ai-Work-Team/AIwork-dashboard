@@ -1,12 +1,12 @@
 import axios from "axios";
 import React from "react";
 
-export const useAxios = ({url = null, body = null, method = null}) => {
+export const useAxios = ({url = null, method = null, body = null}) => {
     const [data, setData] = React.useState([])
     const [loading, setLoading] = React.useState(true);
     const [error, setError] = React.useState({});
 
-    const fetChData = async () => {
+    const fetchData = async () => {
         try {
             let {data} = await axios({method, body, url})
             setData(data)
@@ -21,7 +21,7 @@ export const useAxios = ({url = null, body = null, method = null}) => {
 
     React.useEffect(() => {
         if(url && method){
-            fetChData()
+            fetchData()
         }
     },[url,body,method])
 
@@ -30,6 +30,4 @@ export const useAxios = ({url = null, body = null, method = null}) => {
         loading,
         error
     }
-
-
 }

@@ -5,20 +5,27 @@ import ModalAddUser from "./Components/ModalAddUser";
 import {useAxios} from '../../Hooks/useAxios.js'
 const Order = () => {
   const { mode } = useSelector((state) => state.timeMode);
-  const {data, loading, error} = useAxios({url: "/user", method: 'get'})
-  console.log(data);
+  const [renderData, setRenderData] = React.useState(false);
+  const [data, setData] = React.useState([]);
 
+  const {data:res, loading, error} = useAxios({url: "/user/all", method: 'get'})
+  React.useEffect(() => {
+    setData(res)
+  },[loading,res,data])
+  // console.log(data);
+ 
+  // React.useEffect(() => {
+  //   console.log(res);
+  // }, [loading,renderData]);
+  // console.log(res);
   return (
     <div className="m-8">
       <div className=" flex gap-14 items-center">
-        <ModalAddUser/>
+        <ModalAddUser setRenderData={setRenderData}/>
       </div>
       <div className="mt-4">
-        <Orderitem />
         {
-         loading && data?.map((item) => {
-            return <Orderitem data={item}/>
-          })
+          <Orderitem dataRes={data}loading={loading} renderData={renderData}/>
         }
       </div>
     </div>

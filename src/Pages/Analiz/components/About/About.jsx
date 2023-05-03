@@ -1,11 +1,8 @@
 import { Button } from "@mui/material";
 import React from "react";
-import { useSelector } from "react-redux";
 
-const About = ({ mode, res, loading, color }) => {
+const About = ({ mode, res, color, loading }) => {
   const [open, setOpen] = React.useState(true); 
-  const status = res.status
-  console.log(res)
   return (
     <>
       {
@@ -35,4 +32,3 @@ const About = ({ mode, res, loading, color }) => {
 };
 
 export default About;
-//kodda qanaqa xatolik bor

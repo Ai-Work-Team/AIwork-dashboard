@@ -1,6 +1,5 @@
 import React from "react";
 import { useAxios } from "../../Hooks/useAxios";
-import axios from "axios";
 import Priceitem from "./Components/Priceitem";
 
 const Price = () => {
@@ -17,9 +16,6 @@ const Price = () => {
   const { data:data10} = useAxios({ url: "/default_prices/byCategory/10", method: "get" });
 return (
     <div className="m-8">
-      {/* {data.map((item) => {
-        return <Priceitem key={item.id} data={item} loading={loading} />;
-      })} */}
       <Priceitem data={data} loading ={loading} />
       <Priceitem data={data2} loading={loading} />
       <Priceitem data={data3} loading={loading} />

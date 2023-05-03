@@ -15,37 +15,15 @@ import { Button } from "@mui/material";
 import akfaImg from "../../../assets/akfa.svg";
 import { Link } from "react-router-dom";
 
-const rows = [
-  {
-    id: 1,
-    name: "Akmalov Jahongir",
-    maosh: "2 245 000",
-  },
-  {
-    id: 2,
-    name: "Qosimov Sarvar",
-    maosh: "1 945 000",
-  },
-  {
-    id: 3,
-    name: "Yo'ldoshev Ismoil",
-    maosh: "245 000",
-  },
-  {
-    id: 4,
-    name: "Rahimjonov Tohir",
-    maosh: "245 000",
-  },
-];
-
-const Orderitem = () => {
-  const [isOpened, setIsOpened] = React.useState(true);
+const Orderitem = ({ dataRes,loading,renderData }) => {
   const { mode } = useSelector((state) => state.timeMode);
-
+  const [data, setData] = React.useState([]);
+  React.useEffect(() => {
+    setData(dataRes)
+  }, [renderData,loading,dataRes,mode]);
   return (
     <div className="mb-3">
       <div
-        onClick={() => setIsOpened(!isOpened)}
         style={{
           background:
             "linear-gradient(90.06deg, #0077FF 3.59%, #8000FF 99.98%)",
@@ -53,22 +31,21 @@ const Orderitem = () => {
           width: "1150px",
         }}
         className={`${
-          !isOpened ? "rounded-t-lg" : "rounded-lg"
+          "rounded-t-lg"
         } flex justify-between items-center pr-4`}
       >
         <img src={akfaImg} alt="" />
-        <strong className="text-white text-lg font-bold">6000 Quattro</strong>
-        <i
-          className={`fa-solid fa-chevron-up text-white transition-all ease-in-out duration-250 ${
-            isOpened ? "rotate-180" : "rotate-0"
-          }`}
-        ></i>
+        <strong className="text-white text-lg font-bold">Xodimlar</strong>
+        <div></div>
       </div>
       <TableContainer
         component={Paper}
         sx={{
           width: 1150,
-          height: isOpened ? "0px" : "auto",
+          borderTopLeftRadius:"0",
+          borderTopRightRadius:"0",
+          borderEndEndRadius:'8px',
+          borderEndStartRadius:''
         }}
       >
         <Table
@@ -108,47 +85,53 @@ const Orderitem = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <TableRow
-                hover={true}
-                key={row.id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell
-                  sx={{
-                    color: mode ? "#505050" : "white",
-                    fontWeight: "500",
-                    fontSize: "18px",
-                  }}
-                  component="th"
-                  scope="row"
+            {
+              data?.map((item) => {
+                return (
+                  <TableRow
+                  hover={true}
+                  key={item.id}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  {row.name}
-                </TableCell>
-                <TableCell
-                  sx={{
-                    color: mode ? "#505050" : "white",
-                    fontWeight: "700",
-                    fontSize: "18px",
-                  }}
-                  align="center"
-                >
-                  {row.maosh}
-                </TableCell>
-                <TableCell
-                  sx={{
-                    color: mode ? "#505050" : "white",
-                    fontWeight: "700",
-                    fontSize: "18px",
-                  }}
-                  align="center"
-                >
-                  <Button variant="contained">
-                    <Link to={"/salary/user"}>Batafsil</Link>
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
+                  <TableCell
+                    sx={{
+                      color: mode ? "#505050" : "white",
+                      fontWeight: "500",
+                      fontSize: "18px",
+                    }}
+                    component="th"
+                    scope="row"
+                  >
+                    {item.fullName}
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      color: mode ? "#505050" : "white",
+                      fontWeight: "700",
+                      fontSize: "18px",
+                    }}
+                    align="center"
+                  >
+                    {item.balance?.toFixed()} so'm
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      color: mode ? "#505050" : "white",
+                      fontWeight: "700",
+                      fontSize: "18px",
+                    }}
+                    align="center"
+                  >
+                      <Link to={`/salary/:${item.id}`}>
+                    <Button  variant="contained">
+                      Batafsil
+                    </Button>
+                      </Link>
+                  </TableCell>
+                </TableRow>
+                )
+              })
+            }
           </TableBody>
         </Table>
       </TableContainer>
