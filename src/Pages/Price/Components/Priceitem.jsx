@@ -10,6 +10,7 @@ import Paper from "@mui/material/Paper";
 //img
 import akfaImg from "../../../assets/akfa.svg";
 import { useSelector } from "react-redux";
+import { InputAdornment, TextField } from "@mui/material";
 
 const Priceitem = ({ data, loading }) => {
   const [isOpened, setIsOpened] = React.useState(true);
@@ -116,8 +117,6 @@ const Priceitem = ({ data, loading }) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {/* {        data.map((resItem) =>{} */}
-
                 {!loading &&
                   data.map((resItem) => {
                     return (
@@ -137,7 +136,7 @@ const Priceitem = ({ data, loading }) => {
                           component="th"
                           scope="row"
                         >
-                          {resItem.category.name}
+                          {resItem.name}
                         </TableCell>
                         {Object.keys(resItem.productsWithPrices).map(
                           (key, index) => {
@@ -151,7 +150,30 @@ const Priceitem = ({ data, loading }) => {
                                 }}
                                 align="center"
                               >
-                                {resItem.productsWithPrices[key]} so'm
+                                {/* {resItem.productsWithPrices[key]} so'm */}
+
+                                {/* <div style={{height:"29px"}}> */}
+                                <TextField key={index} 
+                                variant="standard"
+                                sx={{
+                                  width:"183px",
+                                  height:"35px",
+                                  color: mode ? "#505050" : "white",
+                                  fontWeight: "700",
+                                  fontSize: "18px",
+                                  paddingTop:"12px"
+                                }}
+                                size="small"
+                                defaultValue={Math.floor(resItem.productsWithPrices[key]).toLocaleString()}
+                                InputProps={{
+                                  endAdornment: (
+                                    <InputAdornment position="end">
+                                      so'm
+                                    </InputAdornment>
+                                  ),
+                                }}
+                                />
+                                {/* </div> */}
                               </TableCell>
                             );
                           }

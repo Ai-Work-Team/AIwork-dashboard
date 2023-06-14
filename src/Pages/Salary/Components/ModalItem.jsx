@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 
 const ModalItem = ({ title, data, selected, info }) => {
   const { mode } = useSelector((state) => state.timeMode);
-
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-1">
@@ -36,7 +35,7 @@ const ModalItem = ({ title, data, selected, info }) => {
         id="standard-start-adornment"
         disabled={info}
         //   {...register("daraja")}
-        value={data ? data : ""}
+        value={data ? data[1] : ""}
         InputProps={{
           endAdornment: mode ? (
             <InputAdornment position="end" sx={{ color: "black" }}>

@@ -35,6 +35,8 @@ const LoginSms = () => {
         await navigate("/editUser");
       }
     } catch (error) {
+      toast("SMS kodni xato kiritingiz", { type: "error" });
+      setSmsNumber("")
       console.log(error);
     }
   };

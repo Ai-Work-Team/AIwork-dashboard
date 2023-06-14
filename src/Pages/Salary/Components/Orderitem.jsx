@@ -21,6 +21,7 @@ const Orderitem = ({ dataRes,loading,renderData }) => {
   React.useEffect(() => {
     setData(dataRes)
   }, [renderData,loading,dataRes,mode]);
+  // console.log(data);
   return (
     <div className="mb-3">
       <div
@@ -112,7 +113,7 @@ const Orderitem = ({ dataRes,loading,renderData }) => {
                     }}
                     align="center"
                   >
-                    {item.balance?.toFixed()} so'm
+                    {Math.floor(item.balance).toLocaleString()} so'm
                   </TableCell>
                   <TableCell
                     sx={{

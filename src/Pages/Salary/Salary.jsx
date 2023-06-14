@@ -9,9 +9,10 @@ const Order = () => {
   const [data, setData] = React.useState([]);
 
   const {data:res, loading, error} = useAxios({url: "/user/all", method: 'get'})
+  console.log(res);
   React.useEffect(() => {
     setData(res)
-  },[loading,res,data])
+  },[res])
   // console.log(data);
  
   // React.useEffect(() => {
@@ -21,7 +22,7 @@ const Order = () => {
   return (
     <div className="m-8">
       <div className=" flex gap-14 items-center">
-        <ModalAddUser setRenderData={setRenderData}/>
+        <ModalAddUser setRenderData={setRenderData} setData={setData}/>
       </div>
       <div className="mt-4">
         {

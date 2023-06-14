@@ -14,7 +14,6 @@ axios.defaults.baseURL = "http://185.217.131.88:8080";
 axios.defaults.headers.common["Content-Type"] = "application/json";
 let token = localStorage.getItem("token");  
 if (token) axios.defaults.headers.common["Authorization"] = `Bearer${token}`
-
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <Router>

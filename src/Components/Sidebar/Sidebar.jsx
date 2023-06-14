@@ -50,13 +50,13 @@ const Sidebar = () => {
         })} */}
         <NavLink
           className={({isActive}) =>
-            isActive
+            isActive 
               ? `text-base text-white font-medium flex items-center gap-4 bg-blue-600 px-3 py-2 rounded-md`
               : `text-base ${mode ? "text-zinc-500" : "text-white"} font-medium flex items-center gap-4 px-3 py-2 rounded-md`
           }
-          to={"/"}
+          to={"/analiz"}
         >
-          <img src={chart} alt="" />
+          <img style={{filter:location.pathname.includes("/analiz") ? "invert(0%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(152%) contrast(102%)" : null}} src={chart} alt="" />
           Analizlar
         </NavLink>
         <NavLink
@@ -67,7 +67,7 @@ const Sidebar = () => {
           }
           to={"/order"}
         >
-          <img src={order} alt="" />
+          <img style={{filter:location.pathname == "/order" ? "invert(0%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(152%) contrast(102%)" : null}} src={order} alt="" />
           Buyurtma qo'shish
         </NavLink>
         <NavLink
@@ -78,7 +78,7 @@ const Sidebar = () => {
           }
           to={"/price"}
         >
-          <img src={price} alt="" />
+          <img style={{filter:location.pathname == "/price" ? "invert(0%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(152%) contrast(102%)" : null}} src={price} alt="" />
           Narxlar
         </NavLink>
         <NavLink
@@ -89,7 +89,7 @@ const Sidebar = () => {
           }
           to={"/salary"}
         >
-          <img src={salary} alt="" />
+          <img style={{filter:location.pathname.includes("/salary") ? "invert(0%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(152%) contrast(102%)" : null}} src={salary} alt="" />
           Oylik maosh
         </NavLink>
         <NavLink
@@ -100,7 +100,7 @@ const Sidebar = () => {
           }
           to={"/manual"}
         >
-          <img src={manual} alt="" />
+          <img style={{filter:location.pathname == "/manual" ? "invert(0%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(152%) contrast(102%)" : null}} src={manual} alt="" />
           Qo'llanmalar
         </NavLink>
         <NavLink
@@ -111,7 +111,7 @@ const Sidebar = () => {
           }
           to={"/setting"}
         >
-          <img src={setting} alt="" />
+          <img style={{filter:location.pathname == "/setting" ? "invert(0%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(152%) contrast(102%)" : null}} src={setting} alt="" />
           Sozlamalar
         </NavLink>
       </div>

@@ -8,7 +8,7 @@ const Success = () => {
   const navigate = useNavigate()
   function handlerSubmit(){
     if(phoneNumber) localStorage.removeItem("phoneNumber")
-    navigate('/')
+    navigate('/analiz')
   }
   return (
     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center px-4">

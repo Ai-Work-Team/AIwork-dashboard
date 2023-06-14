@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  Checkbox,
+  // Checkbox,
   InputAdornment,
   TextField,
   Button,
@@ -9,16 +9,17 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import CheckBox from "./Checkbox";
-import { useAxios } from "../../../Hooks/useAxios";
+// import { useAxios } from "../../../Hooks/useAxios";
 import axios from "axios";
-import timeMode from "../../../store/timeMode";
+import { useAxios } from "../../../Hooks/useAxios";
+// import timeMode from "../../../store/timeMode";
 
 const kasblar = [
   "Buyurtma oluvchi",
   "Yeg'uvchi",
   "O'rnatib beruvchi",
   "Haydovchi",
-  "Oyna kesuvchi",
+  "Oyna kesuvchi",  
 ];
 const workPercentage = [
   "ANGEL",
@@ -28,20 +29,20 @@ const workPercentage = [
   "GLASSER",
 ];
 
-const ModalAddUser = ({setRenderData}) => {
-  const dipatch = useDispatch()
+const ModalAddUser = ({ setRenderData, setData }) => {
+  // const dipatch = useDispatch();
   const [state, setState] = React.useState(true);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setState(true);
     setOpen(true);
-    setRenderData(true)
+    setRenderData(true);
   };
 
   let setChecked = [];
 
-  function handlerCheckBox(){
-    setState(false)
+  function handlerCheckBox() {
+    setState(false);
   }
 
   const {
@@ -52,8 +53,7 @@ const ModalAddUser = ({setRenderData}) => {
   } = useForm();
 
   const submit = async (data) => {
-    setRenderData(state)
-
+    setRenderData(state);
     const trimmedData = Object.keys(data).reduce((acc, key) => {
       acc[key] = typeof data[key] === "string" ? data[key].trim() : data[key];
       return acc;
@@ -68,16 +68,17 @@ const ModalAddUser = ({setRenderData}) => {
     };
     setOpen(false);
     console.log(dataItem);
-    reset();
     try {
       const response = await axios.post("/user", dataItem);
-      // const {data} = useAxios({url: "/user", method: "post", body: data})
-      console.log(response.data);
+      const res = await axios.get("/user/all")
+      console.log(res);
+      setData(res.data)
     } catch (error) {
       console.log(error);
     }
+    reset();
   };
-  
+
   const handleCheck = (valueCheckBox) => {
     const value = valueCheckBox.target.name;
     setChecked.includes(value)
@@ -85,7 +86,7 @@ const ModalAddUser = ({setRenderData}) => {
       : setChecked.push(value);
   };
   const handleClose = () => {
-    setOpen(false)
+    setOpen(false);
   };
   const { mode } = useSelector((state) => state.timeMode);
   return (
@@ -164,8 +165,7 @@ const ModalAddUser = ({setRenderData}) => {
                       ? {
                           ...register(
                             `worksWithPercentage.${workPercentage[index]}`,
-                            {min: 1,
-                              pattern: /[0-9]*/,}
+                            { min: 1, pattern: /[0-9]*/ }
                           ),
                         }
                       : null)}

@@ -9,19 +9,16 @@ import {
   TableBody,
   Avatar,
   Button,
-  TextField,
-  InputAdornment,
 } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import ModalItem from "./ModalItem";
 import { Link, useParams } from "react-router-dom";
-
 const AboutUser = () => {
   const { mode } = useSelector((state) => state.timeMode);
   const [worker, setWorker] = React.useState([]);
   const { userId } = useParams();
-  const id = userId.split("")[1];
+  const id = userId.split(":")[1];
   const { data, loading } = useAxios({ url: `/user/${id}`, method: "get" });
   const { data: dataTransaction } = useAxios({
     url: `/transaction/byUser/${id}`,
@@ -33,10 +30,9 @@ const AboutUser = () => {
         item,
         data.worksWithPercentage[item],
       ]);
-      setWorker(...workerT);
+      setWorker(workerT);
     }
   }, [data.worksWithPercentage]);
-
   const {
     register,
     handleSubmit,
@@ -45,7 +41,6 @@ const AboutUser = () => {
   } = useForm();
   const submit = (data) => {
     reset();
-    // let dataItem = { ...data, phone: "+998" + data.phone };
     setOpen(false);
   };
   return (
@@ -74,7 +69,7 @@ const AboutUser = () => {
               mode ? "text-zinc-600" : "text-white"
             } text-base  font-bold mt-4`}
           >
-            {data.phoneNumber}
+            {data.phoneNumber?.replace(/(\d{3})(\d{2})(\d{3})(\d{2})(\d{2})/, '($1) $2 $3-$4-$5')}
           </p>
           <div>
             <TableContainer>
@@ -101,7 +96,7 @@ const AboutUser = () => {
                         paddingRight: 0,
                       }}
                     >
-                      3432500 so'm
+                      {Math.floor(data.balance).toLocaleString()} so'm
                     </TableCell>
                   </TableRow>
                 </TableHead>
@@ -167,7 +162,7 @@ const AboutUser = () => {
               boxShadow: "1px 1px 12px rgba(103, 173, 254, 0.77)",
             }}
           >
-            <i class="fa-solid fa-right-from-bracket fa-rotate-180 fa-xl"></i>
+            <i className="fa-solid fa-right-from-bracket fa-rotate-180 fa-xl"></i>
             <strong className="font-medium text-base">Orqaga</strong>
           </Button>
         </Link>
@@ -183,32 +178,34 @@ const AboutUser = () => {
               <>
                 <ModalItem
                   title={"Buyurtma oluvchi"}
-                  data={worker[0] == "ANGEL" ? worker[1] : ""}
-                  selected={worker[0] == "ANGEL" ? true : false}
+                  data={worker.some(item => item[0] === 'ANGEL') ? worker.find(i => i[0]==='ANGEL') : ""}
+                  // data={worker[0] == "ANGEL" ? worker[1] : ""}
+                  selected={worker.some(item => item[0] === 'ANGEL') ? true : false}
                   info={true}
                 />
                 <ModalItem
                   title={"YIg'uvchi"}
-                  data={worker[0] == "CONSTRUCTOR" ? worker[1] : ""}
-                  selected={worker[0] == "CONSTRUCTOR" ? true : false}
+                  // data={worker[0] == "CONSTRUCTOR" ? worker[1] : ""}
+                  data={worker.some(item => item[0] === 'CONSTRUCTOR') ? worker.find(i => i[0]==='CONSTRUCTOR') : ""}
+                  selected={worker.some(item => item[0] === 'CONSTRUCTOR') ? true : false}
                   info={true}
                 />
                 <ModalItem
                   title={"O'rnatib beruvchi"}
-                  data={worker[0] == "INSTALLER" ? worker[1] : ""}
-                  selected={worker[0] == "INSTALLER" ? true : false}
+                  data={worker.some(item => item[0] === 'INSTALLER') ? worker.find(i => i[0]==='INSTALLER') : ""}
+                  selected={worker.some(item => item[0] === 'INSTALLER') ? true : false}
                   info={true}
                 />
                 <ModalItem
                   title={"Haydovchi"}
-                  data={worker[0] == "DRIVER" ? worker[1] : ""}
-                  selected={worker[0] == "DRIVER" ? true : false}
+                  data={worker.some(item => item[0] === 'DRIVER') ? worker.find(i => i[0]==='DRIVER') : ""}
+                  selected={worker.some(item => item[0] === 'DRIVER') ? true : false}
                   info={true}
                 />
                 <ModalItem
                   title={"Oyna kesuvchi"}
-                  data={worker[0] == "" ? worker[1] : ""}
-                  selected={worker[0] == "GLASSER" ? true : false}
+                  data={worker.some(item => item[0] === 'GLAZIER') ? worker.find(i => i[0]==='GLAZIER') : ""}
+                  selected={worker.some(item => item[0] === 'GLAZIER') ? true : false}
                   info={true}
                 />
               </>

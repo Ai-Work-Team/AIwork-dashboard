@@ -3,7 +3,6 @@ import { PieChart } from "react-minimal-pie-chart";
 
 const Card = ({ data, title, color, mode }) => {
   const dataChartItem = data.find((item) => item.title === title);
-
   // const dataChart = data.map((item) =>
   //   item.title === title ? { ...item, color: color } : item
   // );
@@ -54,7 +53,7 @@ const Card = ({ data, title, color, mode }) => {
           style={{ color: `${color}` }}
           className="text-zinc-800 no-underline font-extrabold text-2xl"
         >
-          {dataChartItem.price?.toFixed()}{" "}
+          {Math.floor(dataChartItem.price).toLocaleString()}{" "}
           <span className={`${mode ? "text-zinc-400" : "text-white"} text-lg`}>
             so'm
           </span>
