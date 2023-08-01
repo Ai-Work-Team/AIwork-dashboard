@@ -2,13 +2,13 @@ import { Button } from "@mui/material";
 import axios from "axios";
 import React from "react";
 
-const About = ({ mode, res, color, loading, setChartRes, setOrdderRes,url }) => {
+const About = ({ res, color, setChartRes, setOrdderRes,url }) => {
   const [open, setOpen] = React.useState(true); 
 
   async function handlerBtn(e, id, status) {
     e.stopPropagation()
     try {
-      const response = await axios.put(`/order/editStatus/${id}?status=${status}`);
+      // const response = await axios.put(`/order/editStatus/${id}?status=${status}`);
       const responseChart = await axios.get(`/statistics`);
       const respponseOrder = await axios.get(`/order/getOrderByStatus/${url}`);
       setChartRes(responseChart.data)

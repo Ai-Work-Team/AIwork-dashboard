@@ -1,10 +1,8 @@
 import React from "react";
-import uzb from "../../assets/Login/uzb.svg";
 import icon from "../../assets/logoLogin.svg";
 import { Button } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { loadState, saveState } from "../../Utils/storage";
 import axios from "axios";
 
 const EditUser = () => {

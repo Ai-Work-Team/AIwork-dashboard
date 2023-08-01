@@ -24,7 +24,7 @@ const AboutUser = () => {
     url: `/transaction/byUser/${id}`,
     method: "get",
   });
-   React.useEffect(() => {
+  React.useEffect(() => {
     if (data.worksWithPercentage) {
       const workerT = Object.keys(data.worksWithPercentage).map((item) => [
         item,
@@ -69,7 +69,10 @@ const AboutUser = () => {
               mode ? "text-zinc-600" : "text-white"
             } text-base  font-bold mt-4`}
           >
-            {data.phoneNumber?.replace(/(\d{3})(\d{2})(\d{3})(\d{2})(\d{2})/, '($1) $2 $3-$4-$5')}
+            {data.phoneNumber?.replace(
+              /(\d{3})(\d{2})(\d{3})(\d{2})(\d{2})/,
+              "($1) $2 $3-$4-$5"
+            )}
           </p>
           <div>
             <TableContainer>
@@ -178,34 +181,68 @@ const AboutUser = () => {
               <>
                 <ModalItem
                   title={"Buyurtma oluvchi"}
-                  data={worker.some(item => item[0] === 'ANGEL') ? worker.find(i => i[0]==='ANGEL') : ""}
+                  data={
+                    worker.some((item) => item[0] === "ANGEL")
+                      ? worker.find((i) => i[0] === "ANGEL")
+                      : ""
+                  }
                   // data={worker[0] == "ANGEL" ? worker[1] : ""}
-                  selected={worker.some(item => item[0] === 'ANGEL') ? true : false}
+                  selected={
+                    worker.some((item) => item[0] === "ANGEL") ? true : false
+                  }
                   info={true}
                 />
                 <ModalItem
                   title={"YIg'uvchi"}
                   // data={worker[0] == "CONSTRUCTOR" ? worker[1] : ""}
-                  data={worker.some(item => item[0] === 'CONSTRUCTOR') ? worker.find(i => i[0]==='CONSTRUCTOR') : ""}
-                  selected={worker.some(item => item[0] === 'CONSTRUCTOR') ? true : false}
+                  data={
+                    worker.some((item) => item[0] === "CONSTRUCTOR")
+                      ? worker.find((i) => i[0] === "CONSTRUCTOR")
+                      : ""
+                  }
+                  selected={
+                    worker.some((item) => item[0] === "CONSTRUCTOR")
+                      ? true
+                      : false
+                  }
                   info={true}
                 />
                 <ModalItem
                   title={"O'rnatib beruvchi"}
-                  data={worker.some(item => item[0] === 'INSTALLER') ? worker.find(i => i[0]==='INSTALLER') : ""}
-                  selected={worker.some(item => item[0] === 'INSTALLER') ? true : false}
+                  data={
+                    worker.some((item) => item[0] === "INSTALLER")
+                      ? worker.find((i) => i[0] === "INSTALLER")
+                      : ""
+                  }
+                  selected={
+                    worker.some((item) => item[0] === "INSTALLER")
+                      ? true
+                      : false
+                  }
                   info={true}
                 />
                 <ModalItem
                   title={"Haydovchi"}
-                  data={worker.some(item => item[0] === 'DRIVER') ? worker.find(i => i[0]==='DRIVER') : ""}
-                  selected={worker.some(item => item[0] === 'DRIVER') ? true : false}
+                  data={
+                    worker.some((item) => item[0] === "DRIVER")
+                      ? worker.find((i) => i[0] === "DRIVER")
+                      : ""
+                  }
+                  selected={
+                    worker.some((item) => item[0] === "DRIVER") ? true : false
+                  }
                   info={true}
                 />
                 <ModalItem
                   title={"Oyna kesuvchi"}
-                  data={worker.some(item => item[0] === 'GLAZIER') ? worker.find(i => i[0]==='GLAZIER') : ""}
-                  selected={worker.some(item => item[0] === 'GLAZIER') ? true : false}
+                  data={
+                    worker.some((item) => item[0] === "GLAZIER")
+                      ? worker.find((i) => i[0] === "GLAZIER")
+                      : ""
+                  }
+                  selected={
+                    worker.some((item) => item[0] === "GLAZIER") ? true : false
+                  }
                   info={true}
                 />
               </>

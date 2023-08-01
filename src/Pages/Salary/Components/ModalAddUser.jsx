@@ -1,25 +1,16 @@
 import React from "react";
-import {
-  // Checkbox,
-  InputAdornment,
-  TextField,
-  Button,
-  Modal,
-} from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+import { InputAdornment, TextField, Button, Modal } from "@mui/material";
+import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import CheckBox from "./Checkbox";
-// import { useAxios } from "../../../Hooks/useAxios";
 import axios from "axios";
-import { useAxios } from "../../../Hooks/useAxios";
-// import timeMode from "../../../store/timeMode";
 
 const kasblar = [
   "Buyurtma oluvchi",
   "Yeg'uvchi",
   "O'rnatib beruvchi",
   "Haydovchi",
-  "Oyna kesuvchi",  
+  "Oyna kesuvchi",
 ];
 const workPercentage = [
   "ANGEL",
@@ -30,7 +21,6 @@ const workPercentage = [
 ];
 
 const ModalAddUser = ({ setRenderData, setData }) => {
-  // const dipatch = useDispatch();
   const [state, setState] = React.useState(true);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
@@ -70,9 +60,9 @@ const ModalAddUser = ({ setRenderData, setData }) => {
     console.log(dataItem);
     try {
       const response = await axios.post("/user", dataItem);
-      const res = await axios.get("/user/all")
+      const res = await axios.get("/user/all");
       console.log(res);
-      setData(res.data)
+      setData(res.data);
     } catch (error) {
       console.log(error);
     }
@@ -144,14 +134,6 @@ const ModalAddUser = ({ setRenderData, setData }) => {
                       handleCheck={handleCheck}
                       status={state}
                     />
-                    {/* <Checkbox
-                      // ref={checkboxRef}
-                      checked={checked}
-                      name={workPercentage[index]}
-                      onChange={handleCheck}
-                      color={"primary"}
-                      sx={{ color: "auto" }}
-                    /> */}
                     <p
                       className={`font-bold text-base ${
                         mode ? "text-gray-900" : "text-white"
@@ -211,4 +193,3 @@ const ModalAddUser = ({ setRenderData, setData }) => {
 };
 
 export default ModalAddUser;
-//kodda qanaqa xatolik bor

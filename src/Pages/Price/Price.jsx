@@ -3,7 +3,6 @@ import { useAxios } from "../../Hooks/useAxios";
 import Priceitem from "./Components/Priceitem";
 
 const Price = () => {
-  const [state, setstate] = React.useState([]);
   const { data, loading } = useAxios({ url: "/default_prices/byCategory/1", method: "get" });
   const { data:data2} = useAxios({ url: "/default_prices/byCategory/2", method: "get" });
   const { data:data3} = useAxios({ url: "/default_prices/byCategory/3", method: "get" });

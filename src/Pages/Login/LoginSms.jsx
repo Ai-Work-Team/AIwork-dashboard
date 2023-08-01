@@ -1,9 +1,8 @@
 import React from "react";
 import icon from "../../assets/logoLogin.svg";
 import { Button } from "@mui/material";
-import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import OtpInput from "react-otp-input";
 import { loadState, saveState } from "../../Utils/storage";
 import axios from "axios";
@@ -25,18 +24,18 @@ const LoginSms = () => {
         phoneNumber: userData.phoneNumber,
         smsCode: smsNumber,
       });
-      await saveState("token", response.data.token);
+      saveState("token", response.data.token);
       console.log(response);
       if (response.status === 200) {
-        await navigate("/success");
-      toast("Siz muvaffaqiyatli ro'yxatdan o'ttingiz", { type: "success" });
+        navigate("/success");
+        toast("Siz muvaffaqiyatli ro'yxatdan o'ttingiz", { type: "success" });
       } else if (response.status === 201) {
-      toast("Siz oldin ro'yxatdan o'tmagansiz", { type: "info" });
-        await navigate("/editUser");
+        toast("Siz oldin ro'yxatdan o'tmagansiz", { type: "info" });
+        navigate("/editUser");
       }
     } catch (error) {
       toast("SMS kodni xato kiritingiz", { type: "error" });
-      setSmsNumber("")
+      setSmsNumber("");
       console.log(error);
     }
   };
@@ -75,22 +74,6 @@ const LoginSms = () => {
               />
             )}
           />
-          {/* <input
-          {...register("phoneNumber", {required:true, maxLength:9, minLength:9,pattern: /[0-9]/,})}
-            pattern="/^[0-9]*$/"
-            minLength={9}
-            maxLength={9}
-            className="font-bold text-base focus:border-sky-700 focus:shadow-md"
-            type="number"
-            style={{
-              width: "191px",
-              outline: "none",
-              border: "1px solid #EBF0FF",
-              color: "#5C6379",
-              borderRadius: "5px",
-              
-            }}
-          /> */}
         </div>
         <div className="mt-12">
           <Button

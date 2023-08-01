@@ -7,9 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { loadState, saveState } from "../../Utils/storage";
 import axios from "axios";
 
-
 const Login = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const {
     register,
@@ -17,18 +16,16 @@ const Login = () => {
     reset,
     formState: { error },
   } = useForm();
-const phoneNumber = loadState('phoneNumber')
+  const phoneNumber = loadState("phoneNumber");
   const submit = async (data) => {
-    const dataPhone = {...data, "phoneNumber": "+998"+data.phoneNumber}
-    if(phoneNumber) localStorage.removeItem('phoneNumber')
+    const dataPhone = { ...data, phoneNumber: "+998" + data.phoneNumber };
+    if (phoneNumber) localStorage.removeItem("phoneNumber");
     try {
       const response = await axios.post("/auth/checkPhoneNumber", dataPhone);
-      saveState("phoneNumber", dataPhone)
-      navigate('/phoneSms')
-    } catch (error) {
-      
-    }
-  }
+      saveState("phoneNumber", dataPhone);
+      navigate("/phoneSms");
+    } catch (error) {}
+  };
 
   return (
     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center px-4">
@@ -57,7 +54,12 @@ const phoneNumber = loadState('phoneNumber')
             </span>
           </div>
           <input
-          {...register("phoneNumber", {required:true, maxLength:9, minLength:9,pattern: /[0-9]/,})}
+            {...register("phoneNumber", {
+              required: true,
+              maxLength: 9,
+              minLength: 9,
+              pattern: /[0-9]/,
+            })}
             pattern="/^[0-9]*$/"
             minLength={9}
             maxLength={9}
@@ -69,15 +71,14 @@ const phoneNumber = loadState('phoneNumber')
               border: "1px solid #EBF0FF",
               color: "#5C6379",
               borderRadius: "5px",
-              
             }}
           />
         </div>
-      <div className="mt-12">
-      <Button type="submit" className="w-full mt-4" variant="contained">
-          Keyingisi
-        </Button>
-      </div>
+        <div className="mt-12">
+          <Button type="submit" className="w-full mt-4" variant="contained">
+            Keyingisi
+          </Button>
+        </div>
       </form>
     </div>
   );

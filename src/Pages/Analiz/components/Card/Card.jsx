@@ -3,9 +3,6 @@ import { PieChart } from "react-minimal-pie-chart";
 
 const Card = ({ data, title, color, mode }) => {
   const dataChartItem = data.find((item) => item.title === title);
-  // const dataChart = data.map((item) =>
-  //   item.title === title ? { ...item, color: color } : item
-  // );
   const dataChart = data.map((item) => ({
     ...item,
     color: item.title === title ? color : item.color,

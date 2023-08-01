@@ -1,6 +1,5 @@
 import React from "react";
 import { Checkbox, InputAdornment, TextField } from "@mui/material";
-import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 
 const ModalItem = ({ title, data, selected, info }) => {
@@ -34,7 +33,6 @@ const ModalItem = ({ title, data, selected, info }) => {
         className="text-black"
         id="standard-start-adornment"
         disabled={info}
-        //   {...register("daraja")}
         value={data ? data[1] : ""}
         InputProps={{
           endAdornment: mode ? (
